@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car ordering App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Car ordering App</h1>
+        <form id="orderForm">
+            <div>
+                <label for="Car">Choose a Car</label>
+                <select id="car">
+                    <option value="0">---Select Car---</option>
+                    <option value="90">Toyota Supra MK4 - $90</option>
+                    <option value="100">BMW M3 GTR - $100</option>
+                    <option value="80">Nissan Skyline - $80</option>
+                </select>
+            </div>
+            <div>
+                <label for="engine">Choose a engine</label>
+                <select id="engine">
+                    <option value="0">---Select Engine---</option>
+                    <option value="100">V6 engine - $100</option>
+                    <option value="250">V12 engine - $250</option>
+                    <option value="150">V10 engine - $150</option>
+                </select>
+            </div>
+            <button type="button" id="orderButton">Order Now</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("orderButton").onclick = function() {
+            const carPrice = parseInt(document.getElementById("car").value);
+            const enginePrice = parseInt(document.getElementById("engine").value);
+
+            let totalPrice = carPrice + enginePrice;
+            let discount = 0;
+            
+            if (totalPrice > 100) {
+                discount = totalPrice * 0.1
+                totalPrice -= discount; // totalPrice = totalPrice - discount;
+
+            }
+            const resultDiv = document.getElementById("result");
+
+            if (totalPrice > 0) {
+                resultDiv.innerHTML = `
+                    total : $${totalPrice}<br>
+                    Discount : $${discount.toFixed(2)}
+                    Final Price : $${totalPrice.toFixed(2)}`;
+            } else {
+                resultDiv.innerHTML = "Please select Car and Engine";
+            }
+            
+
+        }
+    </script>
+</body>
+</html>
